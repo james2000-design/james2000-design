@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+#para1a{ text-align:center;
+width:1000px;
+margin:0 auto;
+}
+
+
+.clas1{ text-align:right;
+color: #F93;
+width:1000px;
+}
+
+
+#inlin{ color: #069;
+	}

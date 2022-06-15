@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+body {
+    height: 100%;
+    width: 100%;
+    background: #f2f2f2;
+}
+
+table {
+    width: 70%;
+    margin-left: 14%;
+    border: 2px;
+}
+
+#head {
+    margin-left: 12%;
+    width: 80%;
+}

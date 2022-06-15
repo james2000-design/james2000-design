@@ -1,0 +1,442 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+#cover{
+	width:100%;
+	height:100px;
+	margin:0 auto;
+	z-index: -2;
+	
+}
+
+#ls{
+	height:180px;
+}
+
+#logo1{
+	width:20%;
+	height:50px;
+	float:left;
+	margin-left:20%;
+	
+	
+	
+}
+
+#core{
+	width:16%;
+	margin-left:2%;
+	margin-right:2%;
+	float:left;
+	background-color:#2c6b3d;
+	color: rgb(255,255,255);
+	margin-top:50px;
+	height:50px;
+	border:solid #2c6b3d;
+	border-radius:25px;
+	text-align:center;
+	display:inline;
+	padding:2px;
+	padding-left:3px;
+	padding-top:1px;
+	padding-bottom:1px;
+	font-size:15px;
+}
+
+
+
+#core2{
+	width:15%;
+	margin-right:15%;
+	margin-left:5%;
+	background-color:#2c6b3d ;
+	color: rgb(255,255,255);
+	float:left;
+	margin-top:50px;
+	height:50px;
+	border:solid #2c6b3d;
+	border-radius:25px;
+	text-align:center;
+	display:inline;
+	padding:1px;
+	padding-left:10px;
+	padding-top:3px;
+	font-size:15px;
+}
+
+#close{
+	clear:both;
+}
+/*wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww*/
+
+
+nav{
+	display: inline;
+	text-align:center;
+	margin:opx;
+	margin-left:20%;
+}
+nau ul{
+	display: inline;
+	text-align:center;
+}
+nav ul li{
+	text-align:center;
+	border:solid #2c6b3d;
+	background-color:#2c6b3d;
+	font-size:15px;
+	display:inline-block;
+	margin-bottom:30px;
+	height:30px;
+	padding-top:1px;
+	padding-left:15px;
+	padding-right:15px;	
+}
+#menu{
+	margin-left: 10%;
+}
+a{
+	text-decoration:none;
+}
+#menu nav ul li a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.l1, #menu nav ul li:hover{
+	background-color: #323232;
+}
+.submenu{
+	display: none;
+}
+#menu nav ul li:hover .submenu{
+	display: block;
+	position: absolute;
+	margin-top: 15px;
+	margin-left: -15px;
+}
+#menu nav ul li:hover .submenu ul{
+	display: block;
+	margin: 5px;
+}
+#menu nav ul li:hover .submenu ul li{
+	padding: 5px;
+	text-align: left;
+	background-color: #FFFFFF;
+	border: 0px;
+}
+
+/*TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT*/
+
+#cover2{
+	background-image: url(Media/grasses.webp);
+	height:200px;
+	width:100%;
+	margin:0 auto;
+	background-attachment: fixed;
+	z-index: -3;
+}
+.para0{
+	font-size:50px;
+	margin-left:10%;
+	
+}
+#end{
+	background-color:#FFFFFF;
+	width:100%;
+	height: 100px;
+	margin-bottom: 20px;
+	z-index: -3;
+}
+#image{
+	background-color: #FFFFFF;
+}
+	
+#image2{
+	display: inline-block;
+	margin-left:10%;
+	margin-right:10px;
+	text-align:center;
+	float: left;
+	padding-top: 100px;
+}
+#image3{
+	display: inline-block;
+	margin-left:10px;
+	margin-right:10px;
+	text-align:center;
+	float:left;
+	padding-top: 100px;
+	
+}
+#image4{
+	display: inline-block;
+	margin-left:15px;
+	margin-right:10px;
+	text-align:center;
+	float:left;
+	padding-top: 100px;
+}
+#clear{
+	clear:both;
+}
+#info1{
+	width: 22.5%;
+	display: inline-block;
+	margin-left:10%;
+	margin-right:5px;
+	text-align:center;
+	padding-bottom: 35px;
+	float:left;
+	background-color: #f7f7f7;
+}
+#info2{
+	width: 21%;
+	display: inline-block;
+	margin-left:15px;
+	margin-right:5px;
+	text-align:center;
+	padding: 10px;
+	float:left;
+	background-color: #2c6b3d;
+}
+#info3{
+	width: 21%;
+	display: inline-block;
+	margin-left:20px;
+	margin-right:0px;
+	text-align:center;
+	padding: 10px;
+	float:left;
+	background-color: #f7f7f7;
+}
+#clone{
+	clear: both;
+}
+#box{
+	display:inline;
+	text-align:center;
+	width: 100%;
+	list-style: none;
+	margin-bottom: 20px;
+}
+#box1{
+	width:10%;
+	margin-right:5%;
+	margin-left:15%;
+	float:left;
+	margin-top:10px;
+	height:30px;
+	border:solid #2c6b3d;
+	border-radius:25px;
+	text-align:center;
+	display:inline-block;
+	padding:1px;
+	padding-right: 25px;
+}
+#box2{
+	width:10%;
+	margin-right:6%;
+	margin-left:6%;
+	float:left;
+	margin-top:10px;
+	height:30px;
+	border:solid #2c6b3d;
+	border-radius:25px;
+	text-align:center;
+	display: inline-block;
+	padding:1px;
+	padding-right: 25px;
+
+}
+#box3{
+	width:10%;
+	margin-right:14%;
+	margin-left:8%;
+	float:left;
+	margin-top:10px;
+	height:30px;
+	border: solid #2c6b3d;
+	border-radius:25px;
+	text-align:center;
+	display: inline-block;
+	padding:1px;
+	padding-right: 20px;
+
+}
+
+.ul3{ list-style:none ;
+	text-align: center;
+
+}
+#bottom{
+	clear: both;
+}
+#content{
+	width: 100%;
+	height: 140px;
+	text-align: center;
+	background-color: #2c6b3d;
+	color: rgb(247, 245, 245);
+	margin-top: 40px;
+}
+#cont1{
+	width: 15%;
+	margin-left: 11%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cont2{
+	width: 10%;
+	margin-right: 15px;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cont3{
+	width: 17%;
+	margin-right: 3px;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cont4{
+	width: 20%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#buffalo{
+	font-size: 22px;
+}
+#break{
+	clear: both;
+}
+#subsection{
+	width: 100%;
+	height: 140px;
+	text-align: center;
+	color: rgb(247, 245, 245);
+	background-color: #323232;
+}
+#sub1{
+	width: 15%;
+	margin-left: 11%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#sub2{
+	width: 10%;
+	margin-right: 15px;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#sub3{
+	width: 17%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#sub4{
+	width:20%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#Hutchinson{
+	font-size: 22px;
+}
+#closing{
+	clear: both;
+}
+#cap{
+	width: 100%;
+	height: 140px;
+	text-align: center;
+	background-color: #2c6b3d;
+	color: rgb(247, 245, 245);
+}
+#cap1{
+	width: 15%;
+	margin-left: 11%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cap2{
+	width: 10%;
+	margin-right: 15px;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cap3{
+	width: 17%;
+	margin-right: 3px;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#cap4{
+	width: 20%;
+	text-align: left;
+	float: left;
+	padding: 0%;
+}
+#Ortonville{
+	font-size: 22px;
+}
+#rap{
+	clear: both;
+}
+#extreme{
+	width: 100%;
+	height: 100px;
+}
+#extreme1{
+	width: 20%;
+	margin-left: 11%;
+	float: left;
+	text-align: left;
+}
+#extreme2{
+	width: 40%;
+	float: left;
+	text-align: center;
+	margin-right: 4%;
+	text-decoration: none;
+}
+#extreme3{
+	float: left;
+	text-align: end;
+}
+#finish{
+	clear: both;
+}
+
+#Beginning{
+	width: 78%;
+	margin-left: 11%;
+	margin-right: 12%;
+	font-size: 17px;
+	font-style: normal;
+}
+#newsletter{
+	float: left;
+	width: 60%;
+	margin-left: 10%;
+	text-align: center;
+	margin-right: 15%;
+
+}
+#facebook{
+	float: left;
+	text-align: end;
+
+}

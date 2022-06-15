@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+body { font-family: arial, sans-serif }
+
+nav { font-weight: bold;
+		color: white;
+		border: 2px solid royalblue;
+		text-align: center;
+		width: 10em;
+		background-color: royalblue; }
+		
+/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/		
+nav ul { display: none;
+		list-style: none;
+		margin: 0;
+		padding: 0; }
+		
+		
+nav:hover ul { display: block }
+
+
+/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
+
+nav ul li { border-top: 2px solid royalblue;
+			background-color: white;
+			width: 10em;
+			color: black; }
+			
+			
+nav ul li:hover { background-color: powderblue; }
+
+
+a { text-decoration: none; }
+																	

@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+#image1{
+	padding:20px;
+	display: block;
+	position:absolute;
+	
+}
+nav{
+	text-align:right;
+	
+}
+nav ul{
+	display:inline-block;
+	list-style-type: none;
+	text-align:right;
+	
+}
+nav ul li{
+	text-align:right;
+	display:inline-block;
+	margin:10px;
+}
+#container{
+	margin-top:50px;
+	display:block;
+	position:absolute;
+}
+#start{
+	background-color: rgb(192,192,192);
+}
+#container{
+	background-image:url(Media/christ_child_video.jpeg);
+}
