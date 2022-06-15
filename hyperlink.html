@@ -1,0 +1,3230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HYPERLINK</title>
+</head>
+
+<body>
+ <p> 
+ 	<h1 id="one">SECTION ONE</h1>
+  <a href="#three">Go to section Three</a>
+    Preface <br />
+  
+  <a href="ASSIGNMENT 2.html">LEARN MORE</a>  
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+ <a href="#one">Go to top</a>
+ </p>
+
+<!--HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH-->
+
+<p> 
+ 	<h1 id="two">SECTION TWO</h1>
+    Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+ <a href="#one">Go to top</a>
+ </p>
+
+
+<!--HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH-->
+
+
+
+<p> 
+ 	<h1 id="three">SECTION THREE</h1>
+    Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+Preface
+This book was written for an introductory one-semester or two-quarter course
+in probability and statistics for students in engineering and applied sciences. No
+previous knowledge of probability or statistics is presumed but a good understanding
+of calculus is a prerequisite for the material.
+The development of this book was guided by a number of considerations
+observed over many years of teaching courses in this subject area, including the
+following: .As an introductory course, a sound and rigorous treatment of the basic
+principles is imperative for a proper understanding of the subject matter
+and for confidence in applying these principles to practical problem solving.
+A student, depending upon his or her major field of study, will no doubt
+pursue advanced work in this area in one or more of the many possible
+directions. How well is he or she prepared to do this strongly depends on
+his or . her mastery of the fundamentals. It is important that the student develop an early appreciation for applications.
+Demonstrations of the utility of this material in nonsuperficial applications
+not only sustain student interest but also provide the student with
+.stimulation to delve more deeply into the fundamentals. Most of the students in engineering and applied sciences can only devote one
+semester or two quarters to a course of this nature in their programs.
+Recognizing that the coverage is time limited, it is important that the material
+be self-contained, representing a reasonably complete and applicable body of
+knowledge.
+The choice of the contents for this book is in line with the foregoing
+observations. The major objective is to give a careful presentation of the
+fundamentals in probability and statistics, the concept of probabilistic modeling,
+and the process of model selection, verification, and analysis. In this text,
+definitions and theorems are carefully stated and topics rigorously treated
+but care is taken not to become entangled in excessive mathematical details.
+TLFeBOOK
+Practical examples are emphasized; they are purposely selected from many
+different fields and not slanted toward any particular applied area. The same
+objective is observed in making up the exercises at the back of each chapter.
+Because of the self-imposed criterion of writing a comprehensive text and
+presenting it within a limited time frame, there is a tight continuity from one
+topic to the next. Some flexibility exists in Chapters 6 and 7 that include
+discussions on more specialized distributions used in practice. For example,
+extreme-value distributions may be bypassed, if it is deemed necessary, without
+serious loss of continuity. Also, Chapter 11 on linear models may be deferred to
+a follow-up course if time does not allow its full coverage.
+It is a pleasure to acknowledge the substantial help I received from students
+in my courses over many years and from my colleagues and friends. Their
+constructive comments on preliminary versions of this book led to many
+improvements. My sincere thanks go to Mrs. Carmella Gosden, who efficiently
+typed several drafts of this book. As in all my undertakings, my wife, Dottie,
+cared about this project and gave me her loving support for which I am deeply
+grateful.
+T.T. Soong
+Buffalo, New York
+xiv Preface
+TLFeBOOK
+1
+Introduction
+At present, almost all undergraduate curricula in engineering and applied
+sciences contain at least one basic course in probability and statistical inference.
+The recognition of this need for introducing the ideas of probability theory in
+a wide variety of scientific fields today reflects in part some of the profound
+changes in science and engineering education over the past 25 years.
+One of the most significant is the greater emphasis that has been placed upon
+complexity and precision. A scientist now recognizes the importance of studying
+scientific phenomena having complex interrelations among their components;
+these components are often not only mechanical or electrical parts but
+also ‘soft-science’ in nature, such as those stemming from behavioral and social
+sciences. The design of a comprehensive transportation system, for example,
+requires a good understanding of technological aspects of the problem as well
+as of the behavior patterns of the user, land-use regulations, environmental
+requirements, pricing policies, and so on.
+Moreover, precision is stressed – precision in describing interrelationships
+among factors involved in a scientific phenomenon and precision in predicting
+its behavior. This, coupled with increasing complexity in the problems we face,
+leads to the recognition that a great deal of uncertainty and variability are
+inevitably present in problem formulation, and one of the mathematical tools
+that is effective in dealing with them is probability and statistics.
+Probabilistic ideas are used in a wide variety of scientific investigations
+involving randomness. Randomness is an empirical phenomenon characterized
+by the property that the quantities in which we are interested do not have
+a predictable outcome under a given set of circumstances, but instead there is
+a statistical regularity associated with different possible outcomes. Loosely
+speaking, statistical regularity means that, in observing outcomes of an experiment
+a large number of times (say n), the ratio m/n, where m is the number of
+observed occurrences of a specific outcome, tends to a unique limit as n
+becomes large. For example, the outcome of flipping a coin is not predictable
+but there is statistical regularity in that the ratio m/n approaches 1
+2 for either
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+heads or tails. Random phenomena in scientific areas abound: noise in radio
+signals, intensity of wind gusts, mechanical vibration due to atmospheric disturbances,
+Brownian motion of particles in a liquid, number of telephone calls
+made by a given population, length of queues at a ticket counter, choice of
+transportation modes by a group of individuals, and countless others. It is not
+inaccurate to say that randomness is present in any realistic conceptual model
+of a real-world phenomenon.
+1.1 ORGANIZATION OF TEXT
+This book is concerned with the development of basic principles in constructing
+probability models and the subsequent analysis of these models. As in other
+scientific modeling procedures, the basic cycle of this undertaking consists of
+a number of fundamental steps; these are schematically presented in Figure 1.1.
+A basic understanding of probability theory and random variables is central to
+the whole modeling process as they provide the required mathematical machinery
+with which the modeling process is carried out and consequences deduced.
+The step from B to C in Figure 1.1 is the induction step by which the structure
+of the model is formed from factual observations of the scientific phenomenon
+under study. Model verification and parameter estimation (E) on the basis of
+observed data (D) fall within the framework of statistical inference. A model
+B: Factual observations
+and nature of scientific
+phenomenon
+D: Observed data
+F: Model analysis and deduction
+E: Model verification and parameter estimation
+C: Construction of model structure
+A: Probability and random variables
+Figure 1.1 Basic cycle of probabilistic modeling and analysis
+2 Fundamentals of Probability and Statistics for Engineers
+TLFeBOOK
+may be rejected at this stage as a result of inadequate inductive reasoning or
+insufficient or deficient data. A reexamination of factual observations or additional
+data may be required here. Finally, model analysis and deduction are
+made to yield desired answers upon model substantiation.
+In line with this outline of the basic steps, the book is divided into two parts.
+Part A (Chapters 2–7) addresses probability fundamentals involved in steps
+A ! C, B ! C, and E ! F (Figure 1.1). Chapters 2–5 provide these fundamentals,
+which constitute the foundation of all subsequent development. Some
+important probability distributions are introduced in Chapters 6 and 7. The
+nature and applications of these distributions are discussed. An understanding
+of the situations in which these distributions arise enables us to choose an
+appropriate distribution, or model, for a scientific phenomenon.
+Part B (Chapters 8–11) is concerned principally with step D ! E (Figure 1.1),
+the statistical inference portion of the text. Starting with data and data representation
+in Chapter 8, parameter estimation techniques are carefully developed
+in Chapter 9, followed by a detailed discussion in Chapter 10 of a number of
+selected statistical tests that are useful for the purpose of model verification. In
+Chapter 11, the tools developed in Chapters 9 and 10 for parameter estimation
+and model verification are applied to the study of linear regression models, a very
+useful class of models encountered in science and engineering.
+The topics covered in Part B are somewhat selective, but much of the
+foundation in statistical inference is laid. This foundation should help the
+reader to pursue further studies in related and more advanced areas.
+1.2 PROBABILITY TABLES AND COMPUTER SOFTWARE
+The application of the materials in this book to practical problems will require
+calculations of various probabilities and statistical functions, which can be time
+consuming. To facilitate these calculations, some of the probability tables are
+provided in Appendix A. It should be pointed out, however, that a large
+number of computer software packages and spreadsheets are now available
+that provide this information as well as perform a host of other statistical
+calculations. As an example, some statistical functions available in Microsoft
+ExcelTM 2000 are listed in Appendix B.
+1.3 PREREQUISITES
+The material presented in this book is calculus-based. The mathematical prerequisite
+for a course using this book is a good understanding of differential
+and integral calculus, including partial differentiation and multidimensional
+integrals. Familiarity in linear algebra, vectors, and matrices is also required.
+Introduction 3
+TLFeBOOK
+TLFeBOOK
+Part A
+Probability and Random Variables
+TLFeBOOK
+TLFeBOOK
+2
+Basic Probability Concepts
+The mathematical theory of probability gives us the basic tools for constructing
+and analyzing mathematical models for random phenomena. In studying a
+random phenomenon, we are dealing with an experiment of which the outcome
+is not predictable in advance. Experiments of this type that immediately come
+to mind are those arising in games of chance. In fact, the earliest development
+of probability theory in the fifteenth and sixteenth centuries was motivated by
+problems of this type (for example, see Todhunter, 1949).
+In science and engineering, random phenomena describe a wide variety of
+situations. By and large, they can be grouped into two broad classes. The first
+class deals with physical or natural phenomena involving uncertainties. Uncertainty
+enters into problem formulation through complexity, through our lack
+of understanding of all the causes and effects, and through lack of information.
+Consider, for example, weather prediction. Information obtained from satellite
+tracking and other meteorological information simply is not sufficient to permit
+a reliable prediction of what weather condition will prevail in days ahead. It is
+therefore easily understandable that weather reports on radio and television are
+made in probabilistic terms.
+The second class of problems widely studied by means of probabilistic
+models concerns those exhibiting variability. Consider, for example, a problem
+in traffic flow where an engineer wishes to know the number of vehicles crossing
+a certain point on a road within a specified interval of time. This number
+varies unpredictably from one interval to another, and this variability reflects
+variable driver behavior and is inherent in the problem. This property forces us
+to adopt a probabilistic point of view, and probability theory provides a
+powerful tool for analyzing problems of this type.
+It is safe to say that uncertainty and variability are present in our modeling of
+all real phenomena, and it is only natural to see that probabilistic modeling and
+analysis occupy a central place in the study of a wide variety of topics in science
+and engineering. There is no doubt that we will see an increasing reliance on the
+use of probabilistic formulations in most scientific disciplines in the future.
+Fundamentals of Probability and Statistics for Engineers T.T. Soong  2004 John Wiley & Sons, Ltd
+ISBNs: 0-470-86813-9 (HB) 0-470-86814-7 (PB)
+TLFeBOOK
+2.1 ELEMENTS OF SET THEORY
+Our interest in the study of a random phenomenon is in the statements we can
+make concerning the events that can occur. Events and combinations of events
+thus play a central role in probability theory. The mathematics of events is
+closely tied to the theory of sets, and we give in this section some of its basic
+concepts and algebraic operations.
+A set is a collection of objects possessing some common properties. These
+objects are called elements of the set and they can be of any kind with any
+specified properties. We may consider, for example, a set of numbers, a set of
+mathematical functions, a set of persons, or a set of a mixture of things. Capital
+letters , , , , , . . . shall be used to denote sets, and lower-case letters
+, , , , . . . to denote their elements. A set is thus described by its elements.
+Notationally, we can write, for example,
+which means that set has as its elements integers 1 through 6. If set contains
+two elements, success and failure, it can be described by
+where and are chosen to represent success and failure, respectively. For a set
+consisting of all nonnegative real numbers, a convenient description is
+We shall use the convention
+to mean ‘element belongs to set ’.
+A set containing no elements is called an empty or null set and is denoted by .
+We distinguish between sets containing a finite number of elements and those
+having an infinite number. They are called, respectively, finite sets and infinite
+sets. An infinite set is called enumerable or countable if all of its elements can be
+arranged in such a way that there is a one-to-one correspondence between them
+and all positive integers; thus, a set containing all positive integers 1, 2, . . . is a
+simple example of an enumerable set. A nonenumerable or uncountable set is one
+where the above-mentioned one-to-one correspondence cannot be established. A
+simple example of a nonenumerable set is the set C described above.
+If every element of a set A is also an element of a set B, the set A is called
+a subset of B and this is represented symbolically by
+8 Fundamentals of Probability and Statistics for Engineers
+    
+    
+  ! ) 4 # 9 3
+ 
+
+  
+  
+
+ 
+      *
+   )!
+ 
+
+ 	    
+  ))
+TLFeBOOK
+Example 2.1. Let and Then since every
+element of is also an element of . This relationship can also be presented
+graphically by using a Venn diagram, as shown in Figure 2.1. The set
+occupies the interior of the larger circle and the shaded area in the figure.
+It is clear that an empty set is a subset of any set. When both and
+, set is then equal to , and we write
+We now give meaning to a particular set we shall call space. In our development,
+we consider only sets that are subsets of a fixed (nonempty) set. This
+‘largest’ set containing all elements of all the sets under consideration is called
+space and is denoted by the symbol S.
+Consider a subset A in S. The set of all elements in S that are not elements of
+A is called the complement of A, and we denote it by A. A Venn diagram
+showing A and A is given in Figure 2.2 in which space S is shown as a rectangle
+and A is the shaded area. We note here that the following relations clearly hold:
+2.1.1 SET OPERATIONS
+Let us now consider some algebraic operations of sets A, B, C , . . . that are
+subsets of space S.
+The union or sum of A and B, denoted by , is the set of all elements
+belonging to A or B or both.
+B
+A
+Figure 2.1 Venn diagram for
+S A
+
+
+<a href="#one"> Go to top</a> <br />
+
+<a href="http://www.yahoo.com">Visit yahoo mail</a><br />
+
+<a href="mailto:gbakonjames800@gmail.com"> Contact Us</a>
+
+
+
+<a href="ASSIGNMENT 1.html">NEXT|</a>
+
+
+
+
+
+
+ </p>
+
+
+</body>
+</html>
